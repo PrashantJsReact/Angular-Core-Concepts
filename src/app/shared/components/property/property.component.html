@@ -1,0 +1,28 @@
+<form [formGroup]="propertyForm">
+  <!-- Property type form control -->
+  <label for="propertyType">Property Type</label>
+  <select id="propertyType" [formControl]="type">
+    <option [ngValue]="null" selected disabled>-- Select one --</option>
+    <option
+      *ngFor="let type of ePropertyType | keyvalue"
+      [ngValue]="type.value"
+    >
+      {{ type.value }}
+    </option>
+  </select>
+
+  <!-- Property price form control -->
+  <label for="propertyPrice">Property Price</label>
+  <input
+    id="propertyPrice"
+    class="form-control"
+    type="number"
+    [formControl]="price"
+    placeholder="100 or 200"
+  />
+</form>
+
+<!-- Conditionally display a message if a certain PropertyType is selected (or not selected) -->
+<ng-container *ngIf="type.value !== ePropertyType.House">
+  Wouldn't you prefer a nice garden?
+</ng-container>
